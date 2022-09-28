@@ -701,7 +701,7 @@ namespace at.jku.ssw.cc
                     while (la != Token.LBRACE && la != Token.EOF)
                     //void Main()==> int x,i; {val = new Table;....}
                     {
-                        if (la == Token.IDENT)
+                        if (la == Token.TYPE)
                         {
                             //encuentraDecl = true;
                             Code.Colorear("latoken"); //colorea "int"  en int i; 
@@ -792,14 +792,14 @@ namespace at.jku.ssw.cc
         {
             Code.seleccLaProdEnLaGram(12);
             Code.cargaProgDeLaGram("Type = ident LbrackOpc.");
-            if (la != Token.IDENT)  //debe venir un tipo (int por ej)
+            if (la != Token.TYPE)  //debe venir un tipo (int por ej)
             {
-                Errors.Error("espera un tipo");
+                Errors.Error("Se espera un tipo");
                 xType = Tab.noType;
             }
             else
             {
-                Check(Token.IDENT); //=> token=int y laToken=[,  .....token=int y laToken=size, en int size 
+                Check(Token.TYPE); //=> token=int y laToken=[,  .....token=int y laToken=size, en int size 
                 //Code.Colorear("token"); //si viene de... yaPintado = true => no pinta nada
 
                 Symbol sym = Tab.Find(token.str);  //busca int  y devuelve el Symbol p/int
